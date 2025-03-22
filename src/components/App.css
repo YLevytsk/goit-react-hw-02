@@ -1,0 +1,38 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f6f9;
+    height: auto;
+    padding-top: 50px;
+
+}
+
+.app {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 24px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background-color: #fff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 32px;
+    color: #5a3825;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
