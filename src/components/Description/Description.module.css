@@ -1,0 +1,16 @@
+.description {
+    margin-bottom: 24px;
+    text-align: center;
+
+}
+
+.title {
+    font-size: 32px;
+    color: #5a3825;
+    margin-bottom: 10px;
+}
+
+.text {
+    font-size: 18px;
+    color: #5a3825;
+}
