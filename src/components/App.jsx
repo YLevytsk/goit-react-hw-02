@@ -5,6 +5,7 @@ import Feedback from './Feedback/Feedback';
 import Notification from './Notification/Notification';
 import ResetButton from './ResetButton/ResetButton';
 
+// начальное состояние из localStorage или с нуля
 const initialState = JSON.parse(localStorage.getItem('feedback')) || {
   good: 0,
   neutral: 0,
@@ -14,20 +15,27 @@ const initialState = JSON.parse(localStorage.getItem('feedback')) || {
 export default function App() {
   const [feedback, setFeedback] = useState(initialState);
 
+  // сохраняем в localStorage при каждом обновлении
   useEffect(() => {
     localStorage.setItem('feedback', JSON.stringify(feedback));
   }, [feedback]);
 
+  // обработка голосов
   const updateFeedback = (type) => {
-    setFeedback(prev => ({ ...prev, [type]: prev[type] + 1 }));
+    setFeedback((prev) => ({
+      ...prev,
+      [type]: prev[type] + 1,
+    }));
   };
 
+  // обработка сброса
   const resetFeedback = () => {
     const reset = { good: 0, neutral: 0, bad: 0 };
     setFeedback(reset);
     localStorage.setItem('feedback', JSON.stringify(reset));
   };
 
+  // расчёт статистики
   const total = feedback.good + feedback.neutral + feedback.bad;
   const positivePercentage = total
     ? Math.round((feedback.good / total) * 100)
@@ -52,6 +60,7 @@ export default function App() {
             total={total}
             positivePercentage={positivePercentage}
           />
+          {/* УСЛОВНЫЙ РЕНДЕРИНГ КНОПКИ */}
           <ResetButton onReset={resetFeedback} />
         </>
       ) : (
