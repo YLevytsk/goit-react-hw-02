@@ -5,7 +5,7 @@ export default function Feedback({ good, neutral, bad, total, positivePercentage
   return (
     <div className={styles.feedback}>
       {total === 0 ? (
-        <p className={styles.message}>No feedback yet.</p>
+        <p className={styles.message}>No feedback yet</p>
       ) : (
         <>
           <h2 className={styles.title}>Statistics</h2>
