@@ -4,6 +4,7 @@ import './App.css';
 import Description from './Description/Description';
 import Options from './Options/Options';
 import Feedback from './Feedback/Feedback';
+import Notification from './Notification/Notification'; // 👈 вернули
 
 const initialState = JSON.parse(localStorage.getItem('feedback')) || {
   good: 0,
@@ -19,10 +20,7 @@ export default function App() {
   }, [feedback]);
 
   const updateFeedback = (type) => {
-    setFeedback(prev => ({
-      ...prev,
-      [type]: prev[type] + 1
-    }));
+    setFeedback(prev => ({ ...prev, [type]: prev[type] + 1 }));
   };
 
   const resetFeedback = () => {
@@ -44,14 +42,19 @@ export default function App() {
         onReset={resetFeedback}
         hasFeedback={total > 0}
       />
-      {}
-      <Feedback
-        good={feedback.good}
-        neutral={feedback.neutral}
-        bad={feedback.bad}
-        total={total}
-        positivePercentage={positivePercentage}
-      />
+
+      {/* ✅ Условный рендеринг Notification / Feedback */}
+      {total === 0 ? (
+        <Notification message="No feedback yet" />
+      ) : (
+        <Feedback
+          good={feedback.good}
+          neutral={feedback.neutral}
+          bad={feedback.bad}
+          total={total}
+          positivePercentage={positivePercentage}
+        />
+      )}
     </div>
   );
 }
