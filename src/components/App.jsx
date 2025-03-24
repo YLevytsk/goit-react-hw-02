@@ -43,7 +43,7 @@ export default function App() {
         hasFeedback={total > 0}
       />
 
-      {/* ✅ Условный рендеринг Notification / Feedback */}
+      {}
       {total === 0 ? (
         <Notification message="No feedback yet" />
       ) : (
